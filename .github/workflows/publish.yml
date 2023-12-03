@@ -43,6 +43,8 @@ jobs:
       - name: Build && Push
         uses: docker/build-push-action@v5
         with:
+          build-args: |
+            JELLYFIN_WEB_VERSION=${{ github.ref }}
           context: .
           file: ${{ matrix.file }}
           platforms: ${{ matrix.platform }}
@@ -84,6 +86,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
+          build-args: |
+            JELLYFIN_WEB_VERSION=${{ github.ref }}
           context: .
           file: ${{ matrix.file }}
           platforms: ${{ matrix.platform }}
