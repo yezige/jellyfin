@@ -18,10 +18,6 @@ jobs:
         include:
           - platform: linux/amd64
             file: ./Dockerfile
-          - platform: linux/arm/v7
-            file: ./Dockerfile.arm
-          - platform: linux/arm64
-            file: ./Dockerfile.arm64
     env:
       TZ: Asia/Shanghai
       REGISTRY: ghcr.io
@@ -64,10 +60,6 @@ jobs:
         include:
           - platform: linux/amd64
             file: ./Dockerfile
-          - platform: linux/arm/v7
-            file: ./Dockerfile.arm
-          - platform: linux/arm64
-            file: ./Dockerfile.arm64
     env:
       TZ: Asia/Shanghai
       REGISTRY: docker.io
