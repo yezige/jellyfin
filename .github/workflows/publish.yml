@@ -14,14 +14,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: [linux/amd64, linux/arm/v7, linux/arm64]
+        platform: [linux/amd64]
         include:
           - platform: linux/amd64
             file: ./Dockerfile
-          - platform: linux/arm/v7
-            file: ./Dockerfile.arm
-          - platform: linux/arm64
-            file: ./Dockerfile.arm64
     env:
       TZ: Asia/Shanghai
       REGISTRY: ghcr.io
@@ -47,6 +43,8 @@ jobs:
       - name: Build && Push
         uses: docker/build-push-action@v5
         with:
+          build-args: |
+            JELLYFIN_WEB_VERSION=${{ github.ref }}
           context: .
           file: ${{ matrix.file }}
           platforms: ${{ matrix.platform }}
@@ -60,14 +58,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        platform: [linux/amd64, linux/arm/v7, linux/arm64]
+        platform: [linux/amd64]
         include:
           - platform: linux/amd64
             file: ./Dockerfile
-          - platform: linux/arm/v7
-            file: ./Dockerfile.arm
-          - platform: linux/arm64
-            file: ./Dockerfile.arm64
     env:
       TZ: Asia/Shanghai
       REGISTRY: docker.io
@@ -92,6 +86,8 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
+          build-args: |
+            JELLYFIN_WEB_VERSION=${{ github.ref }}
           context: .
           file: ${{ matrix.file }}
           platforms: ${{ matrix.platform }}
